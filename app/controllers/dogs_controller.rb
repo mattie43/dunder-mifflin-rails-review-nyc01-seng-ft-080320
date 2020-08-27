@@ -9,8 +9,8 @@ class DogsController < ApplicationController
     end
 
     def sort_dogs
-        @dogs = Dog.all
-        @dogs.sort_by { |dog| dog.number_of_owners }
+        @temp_dogs = Dog.all
+        @dogs = @temp_dogs.sort_by { |dog| dog.number_of_owners }.reverse
         render :index
     end
 end
