@@ -1,6 +1,6 @@
-<h1>All Dogs:</h1>
+<h1>All Employees:</h1>
 <ul>
-<% @dogs.each do |d| %>
-<li><%= link_to d.name, dog_path(d) %></li>
+<% @employees.each do |e| %>
+<li><%= link_to e.full_name, employee_path(e) %></li>
 <%end%>
 </ul>
