@@ -22,13 +22,18 @@ class EmployeesController < ApplicationController
 
     def update
         employee = Employee.find(params[:id])
-        if employee.alias_check?(params[:employee][:alias]) == nil
+        e_alias = params[:employee][:alias]
+        e_title = params[:employee][:title]
+
+        if (employee.alias_check?(e_alias) == nil || employee.job_title?(e_title) == nil) || (employee.alias_check?(e_alias) == nil && employee.job_title?(e_title) == nil)
             employee.update(employee_params)
+            redirect_to employee_path(employee)
+        elsif employee.alias_check?(e_alias).alias.downcase == "none"
+            employee.update(params.require(:employee).permit(:alias))
             redirect_to employee_path(employee)
         else
             redirect_to employee_path(employee)
         end
-
     end
 
     private

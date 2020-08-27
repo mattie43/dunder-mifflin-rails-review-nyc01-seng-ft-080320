@@ -5,10 +5,11 @@ class Employee < ApplicationRecord
         first_name + " " + last_name
     end
 
-    def alias_check?(alias)
-        Employee.all.find_by(alias: alias)
+    def alias_check?(str)
+        Employee.all.find_by(alias: str)
     end
 
-    def job_title_check
+    def job_title?(str)
+        Employee.all.find_by(title: str)
     end
 end
